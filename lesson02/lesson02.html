@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02</title>
+</head>
+<body>
+<script>
+    'use strict';
+    let goodsCount = 10;
+
+    if (goodsCount > 0) {
+        console.log(`Количество товаров в корзине ${goodsCount}`);
+    } else {
+        console.log('Корзина пуста');
+    }
+
+    if (goodsCount > 0) console.log(`Количество товаров в корзине ${goodsCount}`);
+    else console.log('Корзина пуста');
+
+    //Тернарные операторы
+    goodsCount > 0
+        ? console.log(`Количество товаров в корзине ${goodsCount}`) //true
+        : console.log('Корзина пуста'); //false
+
+    console.log(goodsCount > 0 ? `Количество товаров в корзине ${goodsCount}` : 'Корзина пуста');
+
+    let result = goodsCount > 0 ? `Количество товаров в корзине ${goodsCount}` : 'Корзина пуста';
+    console.log(result);
+
+
+
+
+
+    let good = 'Яблоки';
+    if (good === 'Бананы') {
+        console.log('Стоимость бананов 50р.');
+    } else {
+        if (good === 'Манго') {
+            console.log('Стоимость манго 80р.');
+        } else {
+            if (good === 'Яблоки' || good === 'Груши') {
+                console.log('Стоимость яблок и груш 40р.');
+            } else {
+                console.log('Неизвестный фрукт');
+            }
+        }
+    }
+
+    if (good === 'Бананы') {
+        console.log('Стоимость бананов 50р.');
+    } else if (good === 'Манго') {
+        console.log('Стоимость манго 80р.');
+    } else if (good === 'Яблоки' || good === 'Груши') {
+        console.log('Стоимость яблок и груш 40р.');
+    } else {
+        console.log('Неизвестный фрукт');
+    }
+
+    switch (good) {
+        case 'Бананы':
+            console.log('Стоимость бананов 50р.');
+            break;
+        case 'Манго':
+            console.log('Стоимость манго 80р.');
+            break;
+        case 'Яблоки':
+        case 'Груши':
+            console.log('Стоимость яблок и груш 40р.');
+            break;
+        default:
+            console.log('Неизвестный фрукт');
+    }
+
+
+
+    function sayPrice(good) {
+        switch (good) {
+            case 'Бананы':
+                console.log('Стоимость бананов 50р.');
+                break;
+            case 'Манго':
+                console.log('Стоимость манго 80р.');
+                break;
+            case 'Яблоки':
+            case 'Груши':
+                console.log('Стоимость яблок и груш 40р.');
+                break;
+            default:
+                console.log('Неизвестный фрукт');
+        }
+    }
+    sayPrice('Бананы');
+    sayPrice(good);
+    sayPrice();
+
+    function sayPrice2(price = 'неизвестна') {
+        console.log(`Стоимость товара ${price}`)
+    }
+    sayPrice2(1000);
+    sayPrice2();
+
+    function getPrice(good) {
+        switch (good) {
+            case 'Бананы': return 50;
+            case 'Манго': return 80;
+            case 'Яблоки':
+            case 'Груши': return 40;
+            default: return null;
+        }
+    }
+
+    console.log(getPrice('Яблоки'));
+
+    let goodPrice = getPrice(good);
+    // let goodPrice = getPrice('asdfasdf');
+    goodPrice != null
+        ? console.log(`price ${good} = ${goodPrice}`)
+        : console.log('Товар не найден');
+
+    function calcPriceByCount(good, quantity = 1) {
+        let price = getPrice(good);
+        if (price == null) return null;
+
+        return price * quantity;
+    }
+
+    console.log(calcPriceByCount(good, 4));
+    console.log(calcPriceByCount(good));
+
+
+
+</script>
+</body>
+</html>
