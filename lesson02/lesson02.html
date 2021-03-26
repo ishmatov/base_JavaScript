@@ -129,6 +129,63 @@
     console.log(calcPriceByCount(good));
 
 
+    foo(); //Функции доступны и до её оперделения
+    function foo() {
+        console.log('Hello');
+    }
+    foo();
+
+    //foo2();//Так уже нельзя
+    let foo2 = function () {
+        console.log('Hello');
+    }
+    foo2();
+    //Рекурсия
+    function recursion(x) {
+        if (x <= 0 || !Number.isInteger(x)) return 'Задайте целое число больше 0';
+        if (x === 1) return '1';
+        return recursion(x - 1) +' ' + x;
+    }
+
+    console.log(recursion(100));
+
+    //Игра
+    let number;
+    let attempts;
+    
+    function restGame() {
+        attempts = 0;
+        number = Math.floor(Math.random() * 100);
+        console.log(number);
+    }
+
+    function tryGuessNumber() {
+        let userAnswer = parseInt(prompt('Введите число от 0 до 100 или -1 для выхода: '));
+
+        if (userAnswer === -1) return alert('Bye!');
+
+        if (isNaN(userAnswer)) {
+            alert('Необходимо ввести целое число от 0 до 100');
+            tryGuessNumber();
+            return;
+        }
+
+        attempts++;
+
+        if (userAnswer > number) {
+            alert('Попробуйте число меньше');
+        } else if (userAnswer < number) {
+            alert('Попробуйте число больше');
+        } else {
+            alert(`Вы угадали с ${attempts} попытки(ок). Это число ${number}`);
+            if (!confirm('Хотите сыграть ещё?')) return alert('Bye!');
+            restGame();
+        }
+        tryGuessNumber();
+    }
+
+    restGame();
+    tryGuessNumber();
 
 </script>
 </body>
