@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework02</title>
+</head>
+<body>
+<script>
+    'use strict';
+    // 1. Дан код:
+    // var a = 1, b = 1, c, d;
+    // c = ++a; alert(c);           // 2
+    // d = b++; alert(d);           // 1
+    // c = (2+ ++a); alert(c);      // 5
+    // d = (2+ b++); alert(d);      // 4
+    // alert(a);                    // 3
+    // alert(b);                    // 3
+    // Почему код даёт именно такие результаты?
+    {
+        //Такие результаты получаются потому, что в зависимости от нахождения операции инкремента относительно
+        // переменной, (++a или a++) срабатывает увеличение переменной до операции присвоения или после
+        // Н-р: c = ++a; ('a' будет увеличено на 1 и полученное значение присвоено 'с')
+        //      c = a++; ('c' присваевается 'a', и только потом 'a' будет увеличена на 1)
+    }
+
+
+    // 2. Чему будет равен x в примере ниже?
+    // var a = 2;
+    // var x = 1 + (a *= 2);
+    {
+        //x = 5, т.к. a *= 2 - это a = a * 2. В итого получаем 1 + (2 * 2) = 5
+    }
+
+
+    // 3. Объявить две целочисленные переменные a и b и задать им произвольные начальные значения. Затем написать
+    // скрипт, который работает по следующему принципу:
+    // если a и b положительные, вывести их разность;
+    // если а и b отрицательные, вывести их произведение;
+    // если а и b разных знаков, вывести их сумму; ноль можно считать положительным числом.
+    {
+        console.log('---------3---------');
+        let a = parseInt(prompt('Введите число:'));
+        let b = parseInt(prompt('Введите ещё одно число:'));
+        if (a >= 0 && b >= 0) {
+            console.log(a - b);
+        } else if (a < 0 && b < 0) {
+            console.log(a * b);
+        } else console.log(a + b);
+    }
+
+
+    // 4. Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать
+    // вывод чисел от a до 15.
+    {
+        console.log('---------4---------');
+        let a = Math.floor(Math.random() * 16);
+        console.log(`Выпало число ${a}`)
+        switch (a) {
+            case 0:
+                console.log(a++);
+            case 1:
+                console.log(a++);
+            case 2:
+                console.log(a++);
+            case 3:
+                console.log(a++);
+            case 4:
+                console.log(a++);
+            case 5:
+                console.log(a++);
+            case 6:
+                console.log(a++);
+            case 7:
+                console.log(a++);
+            case 8:
+                console.log(a++);
+            case 9:
+                console.log(a++);
+            case 10:
+                console.log(a++);
+            case 11:
+                console.log(a++);
+            case 12:
+                console.log(a++);
+            case 13:
+                console.log(a++);
+            case 14:
+                console.log(a++);
+            case 15:
+                console.log(a++);
+        }
+    }
+
+    // 5. Реализовать основные 4 арифметические операции в виде функций с двумя параметрами.
+    // Обязательно использовать оператор return.
+    console.log('---------5---------');
+    function sum(arg1, arg2) {
+        return arg1 + arg2;
+    }
+    function diff(arg1, arg2) {
+        return arg1 - arg2;
+    }
+    function multi(arg1, arg2) {
+        return arg1 * arg2;
+    }
+    function div(arg1, arg2) {
+        if (arg2 === 0) return null;
+        return (arg1 / arg2);
+    }
+    let arg5_1 = parseInt(prompt('Введите первое число: '));
+    let arg5_2 = parseInt(prompt('Введите второе число: '));
+    console.log(sum(arg5_1, arg5_2));
+    console.log(diff(arg5_1, arg5_2));
+    console.log(multi(arg5_1, arg5_2));
+    console.log(div(arg5_1, arg5_2));
+
+    // 6. Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation),
+    // где arg1, arg2 – значения аргументов, operation – строка с названием операции.
+    // В зависимости от переданного значения операции выполнить одну из арифметических операций
+    // (использовать функции из пункта 5) и вернуть полученное значение (использовать switch).
+    console.log('---------6---------');
+    function mathOperation(arg1, arg2, operation) {
+        switch (operation) {
+            case '+':
+                return sum(arg1, arg2);
+            case '-':
+                return diff(arg1, arg2);
+            case '*':
+                return multi(arg1, arg2);
+            case '/':
+                return div(arg1, arg2);
+            default:
+                return 'Неверный знак операции!'
+        }
+    }
+
+    let arg6_1 = parseInt(prompt('Введите первое число: '));
+    let arg6_2 = parseInt(prompt('Введите второе число: '));
+    let operation = prompt('Введите операцию над числами (+ - * /): ');
+    console.log(mathOperation(arg6_1, arg6_2, operation));
+
+    // 7. *Сравнить null и 0. Попробуйте объяснить результат.
+    {
+        // null > 0; //false
+        // null < 0; //false
+        // null == 0; //false
+        // null >= 0; //true
+        // null <= 0; //true
+
+        // Как я понял, это происходит потому, что при сравнени null преобразуется в +0 и
+        // операторы >= и <= стоят в ветвлении как исключающие и если предыдущие сравнения не дали истинный результат,
+        // то последний должен быть истинным. Т.е. ... else return true;
+
+        //https://habr.com/ru/company/ruvds/blog/337732/
+    }
+
+    // 8. *С помощью рекурсии организовать функцию возведения числа в степень.
+    // Формат: function power(val, pow), где val – заданное число, pow – степень.
+    {
+        console.log('---------8---------');
+        function power(val, pow) {
+            if (pow === 1) return val;
+            return (val * power(val, --pow));
+        }
+
+        let val = parseInt(prompt('Введите число: '));
+        let pow = parseInt(prompt('Введите степень: '));
+        console.log(power(val, pow));
+    }
+</script>
+
+</body>
+</html>
