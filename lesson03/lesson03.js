@@ -97,6 +97,7 @@ console.log(typeof arrArr[0][1]);
 
 arr = [true, 'string', NaN, 32];
 
+//Перебор массива
 for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
 }
@@ -104,4 +105,67 @@ for (let i = 0; i < arr.length; i++) {
 for(const index in arr) {
     console.log(arr[index]);
 }
+
+for (const value of arr) {
+    console.log(value);
+}
+
+arr.forEach(function (currentItem,index,sourceArr) {
+    console.log(currentItem, index, sourceArr);
+});
+
+
+// Изменение массива
+// Добавление
+console.log(arr.push('end'), arr); //Добавить в конец массива
+console.log(arr.unshift('begin'), arr); //Добавление в начало массива
+// Удаление
+console.log(arr.pop(), arr); //Удалить элемент с конца и вернёт его в качестве результата
+console.log(arr.shift(), arr); //Удалить элемент с начала массива и возвращает его в качестве результата
+
+
+console.log(arr.splice(1,1)); //Удаляет несколько элементов с определённой позиции
+                                             //и возвращает массив удалённых элементов
+console.log(arr.splice(1,1, 'qwerty'), arr); //Удаляет элемент и вместо него вставляет другой
+console.log(arr.splice(1,0, 'qwerty'), arr); //Ничего удалено не будет,
+                                                                  // но на позицию 1 будет вставлен элемент
+
+// Заполняем массив с возможными вариантами
+let sourceArr = [];
+const countItems = 10;
+for (let i = 0; i < countItems; i++) {
+    sourceArr.push(i);
+}
+
+let generatedNumber = [];
+let part;
+let puzzleCount = 4;
+// Выдёргиваем из массива с возможными вариантами нужное кол-во элементов
+for (i = 0; i < puzzleCount; i++) {
+    part = sourceArr.splice(Math.floor(Math.random()*sourceArr.length),1)[0];
+    generatedNumber.push(part);
+}
+console.log(generatedNumber);
+
+
+// .map() // Создаёт новый массив с результатом вызова указанной функции для каждого элемента массива
+// .reduce() // Метод reduce() применяет функцию reducer к каждому элементу массива (слева-направо),
+             // возвращая одно результирующее значение
+// .find() // Метод find() возвращает значение первого найденного в массиве элемента,
+           // которое удовлетворяет условию переданному в callback функции.  В противном случае возвращается undefined.
+
+
+// Копирование массива
+let arrCopy = arr; // Копируется ссылка на массив, по факту это один и тот же массив
+console.log(arr, arrCopy);
+
+arr.splice(0,1);
+console.log(arr, arrCopy);
+console.log(arr === arrCopy); //true Сравниваются не массивы, а ссылка на массив
+
+let arrCopy2 = [...arr]; //Возьми все элементы массива arr и сложи их в массив arrCopy2
+console.log(arr === arrCopy2); //false Это уже разные массивы
+
+let arrCopy3 = Array.from(arr);
+console.log(arr === arrCopy3); //false Это уже разные массивы
 
