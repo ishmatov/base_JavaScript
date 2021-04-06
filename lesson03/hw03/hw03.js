@@ -32,10 +32,14 @@ basket.push(['Финики', Math.floor(Math.random()*100), Math.floor(Math.rand
 
 console.log(basket);
 
-function countBasketPrice(arr) {
-    return arr.reduce(function (sum, current) {
-                return sum + current[1]*current[2];
-            }, 0);
+// function countBasketPrice(arr) {
+//     return arr.reduce(function (sum, current) {
+//                 return sum + current[1]*current[2];
+//             }, 0);
+// }
+
+function countBasketPrice(basket) {
+    return basket.reduce((totalPrice, cartItem) => totalPrice + cartItem[1] * cartItem[2], 0)
 }
 
 console.log(countBasketPrice(basket));
