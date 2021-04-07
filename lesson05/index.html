@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="id-test">
+    <h1>Тестовая страница</h1>
+    <div class="test-class">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum error eveniet hic illo incidunt itaque officiis perferendis quae repellat? Ab aliquid asperiores atque cumque doloribus, neque praesentium quaerat quasi unde.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque cupiditate deleniti, dolores est eum eveniet exercitationem illo incidunt libero magnam porro quaerat quibusdam quod similique totam veniam? Eius, porro.</p>
+    </div>
+    <div class="test-class">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eum facere illo iste sit soluta? Iure maiores nostrum quis ratione reprehenderit sapiente sint soluta ullam? Debitis distinctio nam placeat quos!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti expedita facere harum maiores nobis similique voluptate. Adipisci aliquam aliquid consequatur ducimus, eaque earum, exercitationem impedit in odit pariatur repellat!</p>
+    </div>
+</div>
+<!-- Как раньше было -->
+<button onclick="alert('Hello')">Click Me!</button>
+<button onclick="sayHello()">Click Me!</button>
+<button onclick="sayAll()">Click Me!</button>
+
+<!-- Как сейчас -->
+<button class="my-btn">Click Me Now!</button>
+
+<script>
+    'use strict';
+    console.log(document); // Преобразует в читаемый вид
+    console.dir(document); // Выводит объект DOM
+    console.dir(window.document); //Тоже самое что и выше
+    console.log(document.getElementById('id-test')); // Поиск по ID
+    console.log(document.getElementsByClassName('test-class')); // Поиск по имени класса
+    console.log(Array.from(document.getElementsByClassName('test-class'))); // Преобразуем в массив
+    console.log(document.getElementsByTagName('p')); // Поиск по тегам
+
+    console.log(document.querySelector('.test-class:last-child'));
+    console.log(document.querySelectorAll('p'));
+
+    const pTags = document.querySelectorAll('p');
+    for (let i = 0; i< pTags.length; i++) {
+        console.dir(pTags[i]);
+    }
+
+    const h1Tag = document.querySelector('h1');
+    console.log(h1Tag);
+    console.log(h1Tag.textContent);
+    console.log(h1Tag.innerText);
+    console.log(h1Tag.innerHTML);
+    h1Tag.textContent += '!';
+    h1Tag.innerHTML += '<i>!</i>';
+
+    let HTMLString = '';
+    HTMLString += `<div class="good">
+                        <div>title</div>
+                        <div>price</div>
+                        <div>quantity</div>
+                   </div>`;
+
+    console.log(h1Tag.style); // Показывает только атрибут style, если он пустой то все поля будут пустыми
+    h1Tag.style.color = 'red';
+    console.log(getComputedStyle(h1Tag)); // Все стили применённые к элементу
+
+    h1Tag.className; // string
+    h1Tag.classList.add('class');
+    h1Tag.classList.remove('class');
+    h1Tag.classList.toggle('class'); // Вкл\выкл (Если есть то удалится, если нет то добавляется)
+
+    //------------------------------------------------------------------------------------------
+    // Создание элементов
+    const myDiv = document.createElement('div');
+    const i = document.createElement('i');
+    i.textContent = 'Hello!';
+    myDiv.appendChild(i);
+    console.log(myDiv);
+
+    document.body.appendChild(myDiv);
+    document.body.insertAdjacentHTML('beforebegin', `<div><i>Hello2!</i></div>`);
+    document.body.insertAdjacentHTML('afterbegin', `<div><i>Hello3!</i></div>`);
+    document.body.insertAdjacentHTML('beforeend', `<div><i>Hello4!</i></div>`);
+    document.body.insertAdjacentHTML('afterend', `<div><i>Hello5!</i></div>`);
+
+    const parentElement = document.querySelector('#id-test');
+    const refElement = document.querySelector('.test-class:last-child');
+
+    parentElement.insertBefore(h1Tag, refElement); // Элемент переместится
+
+    const h1TagCopy = document.querySelector('h1').cloneNode(true);
+    parentElement.insertBefore(h1TagCopy, refElement); // Создастья копия, потому что в h1TagCopy копия элемента, а не ссылка
+
+    h1TagCopy.remove(); // Пропадает из DOM но всё ещё доступен как объект
+    h1Tag.parentElement.removeChild(h1Tag); // Тоже самое, но старый способ
+
+    parentElement.insertBefore(h1Tag, refElement); // Элемент переместится
+
+    // -----------------------------------------------------------------------
+    // События
+    function sayHello() {
+        alert('Hello!');
+    }
+    function sayBye() {
+        alert('Bye!');
+    }
+    function sayAll() {
+        sayHello();
+        sayBye();
+    }
+
+    const myBtn = document.querySelector('.my-btn');
+    // myBtn.onclick = sayAll;
+    // myBtn.onclick = sayHello; // Перетрёт прошлое значение
+    // myBtn.onclick = sayBye;
+
+    myBtn.addEventListener('click', function (event) {
+        console.log(event); // Событие которое произошло
+        console.log(event.target); // Обект на котором произошло событие
+        console.log(this); // Обект на котором произошло событие
+        console.log(event.currentTarget); // Обект на котором сработало событие, события могут всплывать выше.
+    })
+
+
+    const myDivTest = document.querySelector('#id-test');
+    myDivTest.addEventListener('click', function (event) {
+        console.log(this); // Обект на котором произошло событие
+        console.log(event.target); // Обект на котором произошло событие
+        console.log(event.currentTarget); // Обект на котором сработало событие, события могут всплывать выше.
+    })
+
+    myBtn.addEventListener('click', sayHello);
+    myBtn.addEventListener('click', sayBye);
+    myBtn.addEventListener('click', function () { // Такую функцию удалить не получится
+        console.log('test');
+    })
+
+    myBtn.removeEventListener('click', sayHello); // Удаление из списка событий
+
+
+    // События документа
+    window.addEventListener('load', function () {
+        console.log('Документ готов'); // Загрузился полностью документ: картинки, шрифты ...
+    })
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Загрузился DOM');
+    })
+    window.addEventListener('beforeunload', function () {
+        alert('Перед закрытием ');
+        console.log('Событие перед закрытием');
+    })
+</script>
+</body>
+</html>
