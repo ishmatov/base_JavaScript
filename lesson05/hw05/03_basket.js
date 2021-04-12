@@ -51,4 +51,3 @@ if (basketObj.items.length === 0) {
     total.textContent = `В корзине: ${basketObj.items.length} товара(ов) на сумму ${basketObj.countBasketPrice()} рубля(ей)`;
     basket.appendChild(total);
 }
-
