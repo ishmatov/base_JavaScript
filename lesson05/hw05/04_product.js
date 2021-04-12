@@ -1,8 +1,35 @@
 'use strict';
 
+const good = {
+    render(good) {
+        return `<div class="good">
+                    <div>Название: ${good.title}</div>
+                    <div>Цена: ${good.price}</div>
+                </div>`;
+    },
+}
 
 const catalog = {
     products: [],
+    catalogListBlock: null,
+    good,
+
+    init(idElement) {
+        if (!idElement)
+            idElement = 'catalog';
+        this.catalogListBlock = document.getElementById(idElement);
+        this.render();
+    },
+
+    render() {
+        if (this.products.length) {
+            this.products.forEach(good => {
+                this.catalogListBlock.insertAdjacentHTML('beforeend', this.good.render(good));
+            })
+        } else {
+            this.catalogListBlock.textContent = 'Каталог пустой';
+        };
+    },
 };
 
 const product_1 = {
@@ -36,9 +63,4 @@ catalog.products.push(product_3);
 catalog.products.push(product_4);
 catalog.products.push(product_5);
 
-const catalogItem = document.querySelector('#catalog');
-for(let i = 0; i < catalog.products.length; i++) {
-    const prod = document.createElement('p');
-    prod.textContent = catalog.products[i].title + " " + catalog.products[i].price;
-    catalogItem.appendChild(prod);
-}
+catalog.init();
