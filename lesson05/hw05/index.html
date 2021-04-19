@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 05</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+        tr {
+            width: 40px;
+            height: 40px;
+        }
+        td {
+            border: 1px solid #888;
+            width: 40px;
+            height: 40px;
+        }
+        .good {
+            background: bisque;
+            margin-bottom: 5px;
+            padding-left: 10px;
+        }
+        .whiteFigure {
+            color: white;
+            font-size: x-large;
+        }
+        .blackFigure {
+            color: black;
+            font-size: x-large;
+        }
+        .black {
+            background: #b58863
+        }
+        .white {
+            background: #f0d9b5;
+        }
+        span {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task 1-2</h1>
+    <p>1. Создать функцию, генерирующую шахматную доску. При этом можно использовать любые html-теги по своему желанию. Доска должна быть разлинована соответствующим образом, т.е. чередовать черные и белые ячейки. Строки должны нумероваться числами от 1 до 8, столбцы – латинскими буквами A, B, C, D, E, F, G, H.</p>
+    <p>2*. Заполнить созданную таблицу буквами, отвечающими за шахматную фигуру, например К – король, Ф – ферзь и т.п.,</p>
+    <hr>
+    <table id="chessTable"></table>
+    <hr>
+    <h1>Task 3</h1>
+    <p>3. Сделать генерацию корзины динамической: верстка корзины не должна находиться в HTML-структуре. Там должен быть только div, в который будет вставляться корзина, сгенерированная на базе JS:</p>
+    <p>3.1. Пустая корзина должна выводить строку «Корзина пуста»;</p>
+    <p>3.2. Наполненная должна выводить «В корзине: n товаров на сумму m рублей».</p>
+    <hr>
+    <div id="basket"></div>
+    <hr>
+    <h1>Task 4</h1>
+    <p>4*. Сделать так, чтобы товары в каталоге выводились при помощи JS:</p>
+    <p>4.1. Создать массив товаров (сущность Product);</p>
+    <p>4.2. При загрузке страницы на базе данного массива генерировать вывод из него. HTML-код должен содержать только div id=”catalog” без вложенного кода. Весь вид каталога генерируется JS.</p>
+    <hr>
+    <div id="catalog"></div>
+    <script src="01_02_chessTable.js"></script>
+    <script src="03_basket.js"></script>
+    <script src="04_product.js"></script>
+</body>
+</html>
