@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">Привет</button>
+<script>
+    'use strict'
+    myFunc();
+
+    function myFunc() {
+        console.log('Hello!');
+    }
+
+    myFunc();
+
+    console.log(a); //undefined
+    var a = 5;
+    console.log(a); //5
+
+
+    foo();
+    const foo = function() {
+        console.log('Hello!');
+    };
+    foo();
+
+    function f() {
+        if (false) var a = 5;
+    }
+
+    f();
+    console.log(a); // a is not defined
+    //---------------------------------
+    var d = 5;
+    var result;
+
+    if (d > 3) {
+        result = function () {
+            console.log('>')
+        }
+    } else {
+        result = function () {
+            console.log('<=')
+        }
+    }
+
+    result();
+    //----------------------------------
+    const myFoo = function foo() {
+        console.log('Hello')
+    }
+    // foo(); // foo is not defined
+
+
+</script>
+</body>
+</html>
