@@ -148,6 +148,7 @@ const catalog = {
         if (this.products.length) {
             this.products.forEach(good => {
                 this.catalogListBlock.insertAdjacentHTML('beforeend', this.renderCatalogItems(good));
+                this.appendChild()
             })
         } else {
             this.catalogListBlock.textContent = 'Каталог пустой';
