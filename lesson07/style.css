@@ -19,6 +19,15 @@
     border-collapse: collapse;
     margin: 2% auto 0;
 }
+
+#score {
+    display: flex;
+    color: white;
+    font-size: xx-large;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 #menu{
     display: flex;
     justify-content: center;
@@ -31,6 +40,9 @@ td.cell{
 }
 .food{
     background: #00d021;
+}
+.block {
+    background: #e4ff00;
 }
 .snakeBody{
     background: #e5e5e5;
